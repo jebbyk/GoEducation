@@ -15,4 +15,6 @@ func main() {
 	for i := 0; i < iterations; i++ {
 		fmt.Println(generator.Fgen())
 	}
+
+	fmt.Println("Success!")
 }
