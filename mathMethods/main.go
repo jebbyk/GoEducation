@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"mathMethods/compute/random"
 	"mathMethods/interact/prompt"
+	"mathMethods/visualize/graphs"
 )
 
 func main() {
@@ -15,6 +16,8 @@ func main() {
 	for i := 0; i < iterations; i++ {
 		fmt.Println(generator.Fgen())
 	}
+
+	graph := new(graphs.Graph).Init()
 
 	fmt.Println("Success!")
 }

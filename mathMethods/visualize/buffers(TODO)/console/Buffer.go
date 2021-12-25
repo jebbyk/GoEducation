@@ -27,3 +27,14 @@ func (b *Buffer) Print() {
 func (b *Buffer) SetPixel(x int, y int, symbol rune) {
 	b.canvas[x][y] = symbol
 }
+
+// fill entire buffer with space symbols
+func (b *Buffer) Clear() *Buffer {
+	for i := 0; i < b.h; i++ {
+		for j := 0; j < b.w; j++ {
+			b.SetPixel(i, j, ' ')
+		}
+	}
+
+	return b
+}
