@@ -1,10 +1,19 @@
 package graphs
 
-import "mathMethods/geometry/types"
+import . "mathMethods/geometry/types"
 
 type Graph struct {
-	_type string //bars, lines
-	xAxis *Axis
-	yAxis *Axis
-	scale *types.Vector2
+	position *Vector2
+	scale    *Vector2
+}
+
+func (g *Graph) Init(position *Vector2, scale *Vector2) *Graph {
+	g.position = position
+	g.scale = scale
+
+	return g
+}
+
+func (g *Graph) VisualizeFloats(values []float64) {
+
 }

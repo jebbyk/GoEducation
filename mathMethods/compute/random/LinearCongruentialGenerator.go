@@ -27,6 +27,6 @@ func (g *Generator) Gen() int {
 }
 
 // generates a pseudorandom float32
-func (g *Generator) Fgen() float32 {
-	return float32(g.Gen()) / MAX
+func (g *Generator) Fgen() float64 {
+	return float64(g.Gen()) / MAX
 }
