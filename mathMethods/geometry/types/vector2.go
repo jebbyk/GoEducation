@@ -39,3 +39,22 @@ func (v0 *Vector2) SqrMagnitude() float64 {
 func (v0 *Vector2) Len() float64 {
 	return math.Sqrt(v0.SqrMagnitude())
 }
+
+// inverses each component of a vector (components should not be grater than 1.0)
+func (v *Vector2) Inverse(x bool, y bool) *Vector2 {
+	if x {
+		v.x = 1.0 - v.x
+	}
+	if y {
+		v.y = 1.0 - v.y
+	}
+	return v
+}
+
+func (v *Vector2) GetX() float64 {
+	return v.x
+}
+
+func (v *Vector2) GetY() float64 {
+	return v.y
+}
