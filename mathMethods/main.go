@@ -118,6 +118,7 @@ func generateNormDistribution(Q float64, iterations int, generator *random.Gener
 	return values
 }
 func idkHowToNameThisShit(value float64) float64 {
+	// bunch of thing is dropped from original formula cuz anyway a = 0 and q = 1
 	exp := math.Exp(-0.5 * (value * value)) // https://ru.wikipedia.org/wiki/%D0%9D%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5
 	fract := 1.0 / math.Sqrt(2.0*math.Pi)
 	return fract * exp
@@ -168,7 +169,7 @@ func displayValues(values []float64, buffer *Buffer, posX float64, posY float64,
 func main() {
 	generator := new(random.Generator).Init(0)
 	prompter := new(Prompter).Init("\n", "Incorrect input!")
-	buffer := new(Buffer).Init(110, 350)
+	buffer := new(Buffer).Init(24, 160)
 
 	iterations := prompter.RequestInteger("Enter iterations amount: ")
 	//iterations := 10
@@ -192,17 +193,18 @@ func main() {
 
 	norm = generateNormDistribution(Q, iterations, generator)
 	for i := 0; i < iterations; i++ {
-		norm[i] += 2.0 //Offset them so they can be displayed on my shitty graph :)
+		norm[i] += 3.0 //Offset them so they can be displayed on my shitty graph :)
 	}
 	estimatedNormProbabilities := calcEstimatedNormProbabilities(misc.FindMinFloat(norm), misc.FindMaxFloat(norm), 20)
 	actualNormProbabilities := countProbabilities(norm, 20)
 	normPearsonCriterion := pearsonCriterion(estimatedNormProbabilities, actualNormProbabilities)
 	displayValues(norm, buffer, 0.7, 0.0, 0.3, 8.0, 100)
 
-	fmt.Println("=========================================================================================================================================================================================================")
+	fmt.Println("=================================================================================================================================================================================================")
 	buffer.Print()
-	fmt.Println("=========================================================================================================================================================================================================")
-
+	fmt.Println("=================================================================================================================================================================================================")
+	fmt.Println()
+	fmt.Println("Pearson criterion: ")
 	fmt.Println("even: ", evenPearsonCriterion)
 	fmt.Println("exp: ", expPearsonCriterion)
 	fmt.Println("norm: ", normPearsonCriterion)
